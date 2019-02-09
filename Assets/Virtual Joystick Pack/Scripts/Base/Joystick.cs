@@ -22,6 +22,20 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     public float Vertical { get { return inputVector.y; } }
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
+
+    void Start()
+    {
+        background.gameObject.SetActive(false);
+        if (isRight)
+        {
+            rightJoystick = this;
+        }
+        else
+        {
+            leftJoystick = this;
+        }
+    }
+
     public virtual void OnDrag(PointerEventData eventData)
     {
     }

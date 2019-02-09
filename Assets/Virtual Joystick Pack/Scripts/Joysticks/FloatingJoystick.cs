@@ -8,14 +8,6 @@ public class FloatingJoystick : Joystick
     void Start()
     {
         background.gameObject.SetActive(false);
-        if (isRight)
-        {
-            rightJoystick = this;
-        }
-        else
-        {
-            leftJoystick = this;
-        }
     }
 
     public override void OnDrag(PointerEventData eventData)
