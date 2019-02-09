@@ -46,15 +46,25 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     public void OnMouseDown()
     {
-        pressed = true;
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-        pressed = false;
     }
 
-    protected void ClampJoystick()
+    public void Awake()
+    {
+        if (isRight)
+        {
+            Joystick.rightJoystick = this;
+        }
+        else
+        {
+            Joystick.leftJoystick = this;
+        }
+    }
+
+protected void ClampJoystick()
     {
         if (joystickMode == JoystickMode.Horizontal)
             inputVector = new Vector2(inputVector.x, 0f);
