@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4821261394503914601}
   - component: {fileID: 4821261394502784681}
   - component: {fileID: 4821261394507081417}
+  - component: {fileID: 9175538383213106742}
   m_Layer: 0
   m_Name: slantBuilding
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4821261394500782185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 4, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,3 +93,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: bf67dfef9f51c8d4a88d2598961d632d, type: 3}
+--- !u!114 &9175538383213106742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821261394500782185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb660124f9dbf744bd9c050637a2817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

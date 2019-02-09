@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 112f8371a3fcc4d4cb10eb0dcff0e49c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: barrel
+    100002: exhaust
+    100004: front
+    100006: head
+    100008: main
+    100010: spikes
+    100012: star
+    100014: //RootNode
+    100016: tread_circles
+    100018: tread_cover
+    100020: treads
+    400000: barrel
+    400002: exhaust
+    400004: front
+    400006: head
+    400008: main
+    400010: spikes
+    400012: star
+    400014: //RootNode
+    400016: tread_circles
+    400018: tread_cover
+    400020: treads
+    2100000: UstGovde
+    2100002: "Palet Kapa\u011F\u0131"
+    2100004: "\u0130\xE7 palet"
+    2100006: Palet
+    2100008: Diken
+    2100010: "Y\u0131ld\u0131z"
+    2100012: Default_Material
+    2100014: Material.003
+    2100016: Material.002
+    2300000: barrel
+    2300002: exhaust
+    2300004: front
+    2300006: head
+    2300008: main
+    2300010: spikes
+    2300012: star
+    2300014: tread_circles
+    2300016: tread_cover
+    2300018: treads
+    3300000: barrel
+    3300002: exhaust
+    3300004: front
+    3300006: head
+    3300008: main
+    3300010: spikes
+    3300012: star
+    3300014: tread_circles
+    3300016: tread_cover
+    3300018: treads
+    4300000: main
+    4300002: exhaust
+    4300004: tread_circles
+    4300006: tread_cover
+    4300008: treads
+    4300010: spikes
+    4300012: star
+    4300014: front
+    4300016: head
+    4300018: barrel
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

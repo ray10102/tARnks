@@ -31,32 +31,42 @@ public class BuildingCreator : MonoBehaviour
     private void MakeBuilding(Vector3 position, Vector3 dimensions)
     {
         int buildingIndex = Random.Range(0, buildings.Length);
-        GameObject obj = Instantiate(buildings[buildingIndex], transform) as GameObject;
+        Debug.Log(buildingIndex);
+        GameObject obj = Instantiate(buildings[1], transform) as GameObject;
         obj.transform.localPosition = position;
         obj.transform.localScale = dimensions;
-        if (dimensions.y > roofHeightThreshhold && buildingIndex == 2 && Random.Range(0f, 1f) > roofProbability)
+        if (dimensions.y > roofHeightThreshhold && buildingIndex == 2 && Random.Range(0f, 1f) < roofProbability)
         {
-            GameObject roof = Instantiate(roofs[Random.Range(0, roofs.Length)], obj.transform);
+            GameObject roof = Instantiate(roofs[0], obj.transform);
             roof.transform.localPosition = new Vector3(0, dimensions.y * 3, 0);
             dimensions.y = 3;
             roof.transform.localScale = dimensions;
         }
 
-        if (Random.Range(0, 1f) > windowProbability)
+        if (Random.Range(0, 1f) < windowProbability)
          {
-             
-            
-            for (int x = 0; x < dimensions.x; x++)
-            {
-                for (int y = 0; y < dimensions.y; y++)
-                {
-                    for (int z = 0; z < dimensions.z; z++)
-                    {
-                        GameObject w = Instantiate(window[Random.Range(0, window.Length)], obj.transform) as GameObject;
-                        w.transform.localPosition = new Vector3( 1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, );
-                    }
-                }
-            }
+             for (int y = 0; y < dimensions.y; y++)
+             {
+                 for (int x = 0; x < dimensions.x; x++)
+                 {
+                     GameObject w1 = Instantiate(window[0]) as GameObject;
+                     w1.transform.localPosition = new Vector3(1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, (1.5f * dimensions.z) - (3 * dimensions.z));
+                     w1.transform.eulerAngles = new Vector3(0, 90, 0);
+                     GameObject w2 = Instantiate(window[0]) as GameObject;
+                     w2.transform.localPosition = new Vector3(1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, (1.5f * dimensions.z));
+                     w2.transform.eulerAngles = new Vector3(0, -90, 0);
+                 }
+                 
+                 for (int z = 0; z < dimensions.z; z++)
+                 {
+                     GameObject w1 = Instantiate(window[0]) as GameObject;
+                     w1.transform.localPosition = new Vector3((1.5f * dimensions.x) - (3 * dimensions.x) , 1.5f + y * 3f, 1.5f * (dimensions.z - 1) - 3 * z);
+                     w1.transform.eulerAngles = new Vector3(0, 180, 0);
+                     GameObject w2 = Instantiate(window[0]) as GameObject;
+                     w2.transform.localPosition = new Vector3((1.5f * dimensions.x), 1.5f + y * 3f, 1.5f * (dimensions.z - 1) - 3 * z);
+                     w2.transform.eulerAngles = new Vector3(0, 0, 0);
+                 }
+             }
             
             Debug.Log("windows");
         }
