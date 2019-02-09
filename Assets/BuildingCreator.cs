@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 
 public class BuildingCreator : MonoBehaviour
 {
+    private static BuildingCreator instance;
+
+    [SerializeField] private Transform buildingParent;
+
     [SerializeField] private GameObject[] buildings;
 
     [SerializeField] private GameObject[] roofs;
@@ -14,61 +19,144 @@ public class BuildingCreator : MonoBehaviour
 
     [SerializeField] private float roofProbability = .4f;
 
-    [SerializeField] private float windowProbability = .7f;
+    [SerializeField] private float windowProbability = .3f;
+
+    [SerializeField] private float addAllWindowsProbability = .2f;
+
+    [SerializeField] private Color[] frameColors, innerColors, buildingColors;
+
+    private static int maxRoofHeight = 10;
+    private static int minRoofHeight = 3;
+    private static float tinyWindowOffset = .0001f;
+
+    private static float unit = 1f;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public static void MakeBuilding(Vector3 position, Vector2 dimensions)
+    {
+        Vector3 dimensionsWithRoof =
+            new Vector3(dimensions.x, Random.Range(minRoofHeight, maxRoofHeight), dimensions.y);
+        instance._MakeBuilding(position, dimensionsWithRoof);
+    }
+
+    public static void MakeBuilding(Vector3 position, Vector3 dimensions)
+    {
+        instance._MakeBuilding(position, dimensions);
+    }
+
+    private void _MakeBuilding(Vector3 position, Vector3 dimensions)
+    {
+        Color buildingColor = buildingColors[Random.Range(0, buildingColors.Length)];
+        int buildingIndex = MakeBase(position, dimensions, buildingColor);
+
+        MakeRoof(dimensions, buildingIndex, buildingColor);
+
+        MakeWindows(position, dimensions);
+    }
+
+    #region make helpers
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        MakeBuilding(Vector3.zero, new Vector3(Random.Range(3, 8), Random.Range(3, 8), Random.Range(3, 8)));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void MakeBuilding(Vector3 position, Vector3 dimensions)
+    private int MakeBase(Vector3 position, Vector3 dimensions, Color buildingColor)
     {
         int buildingIndex = Random.Range(0, buildings.Length);
-        Debug.Log(buildingIndex);
-        GameObject obj = Instantiate(buildings[1], transform) as GameObject;
+        GameObject obj = Instantiate(buildings[Random.Range(0, buildings.Length)], buildingParent) as GameObject;
         obj.transform.localPosition = position;
         obj.transform.localScale = dimensions;
+        SetColor(obj, buildingColor);
+        return buildingIndex;
+    }
+
+    private void MakeRoof(Vector3 dimensions, int buildingIndex, Color buildingColor)
+    {
         if (dimensions.y > roofHeightThreshhold && buildingIndex == 2 && Random.Range(0f, 1f) < roofProbability)
         {
-            GameObject roof = Instantiate(roofs[0], obj.transform);
-            roof.transform.localPosition = new Vector3(0, dimensions.y * 3, 0);
+            GameObject roof = Instantiate(roofs[Random.Range(0, roofs.Length)], buildingParent);
+            roof.transform.localPosition = new Vector3(0, dimensions.y * unit, 0);
             dimensions.y = 3;
             roof.transform.localScale = dimensions;
-        }
-
-        if (Random.Range(0, 1f) < windowProbability)
-         {
-             for (int y = 0; y < dimensions.y; y++)
-             {
-                 for (int x = 0; x < dimensions.x; x++)
-                 {
-                     GameObject w1 = Instantiate(window[0]) as GameObject;
-                     w1.transform.localPosition = new Vector3(1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, (1.5f * dimensions.z) - (3 * dimensions.z));
-                     w1.transform.eulerAngles = new Vector3(0, 90, 0);
-                     GameObject w2 = Instantiate(window[0]) as GameObject;
-                     w2.transform.localPosition = new Vector3(1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, (1.5f * dimensions.z));
-                     w2.transform.eulerAngles = new Vector3(0, -90, 0);
-                 }
-                 
-                 for (int z = 0; z < dimensions.z; z++)
-                 {
-                     GameObject w1 = Instantiate(window[0]) as GameObject;
-                     w1.transform.localPosition = new Vector3((1.5f * dimensions.x) - (3 * dimensions.x) , 1.5f + y * 3f, 1.5f * (dimensions.z - 1) - 3 * z);
-                     w1.transform.eulerAngles = new Vector3(0, 180, 0);
-                     GameObject w2 = Instantiate(window[0]) as GameObject;
-                     w2.transform.localPosition = new Vector3((1.5f * dimensions.x), 1.5f + y * 3f, 1.5f * (dimensions.z - 1) - 3 * z);
-                     w2.transform.eulerAngles = new Vector3(0, 0, 0);
-                 }
-             }
-            
-            Debug.Log("windows");
+            SetColor(roof, buildingColor);
         }
     }
+
+    private void MakeWindows(Vector3 position, Vector3 dimensions)
+    {
+        bool addAllWindows = Random.Range(0, 1f) < addAllWindowsProbability;
+        if (addAllWindows || Random.Range(0, 1f) < windowProbability)
+        {
+            Color windowFrame = frameColors[Random.Range(0, frameColors.Length)];
+            Color innerColor = innerColors[Random.Range(0, innerColors.Length)];
+
+            for (int y = 0; y < dimensions.y; y++)
+            {
+                MakeWindowRow(position, dimensions, windowFrame, innerColor, y, addAllWindows);
+            }
+        }
+    }
+
+    private void MakeWindowRow(Vector3 position, Vector3 dimensions, Color windowFrame, Color innerColor, int y, bool addAllWindows)
+    {
+        for (int x = 0; x < dimensions.x; x++)
+        {
+            if (addAllWindows || Random.Range(0, 1f) < windowProbability)
+            {
+                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                w1.transform.localPosition =
+                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + position.x, unit / 2 + y * unit,
+                        (unit / 2 * dimensions.z) - (unit * dimensions.z) + position.z - tinyWindowOffset);
+                w1.transform.eulerAngles = new Vector3(0, 90, 0);
+                SetWindowColor(w1, windowFrame, innerColor);
+            }
+
+            if (addAllWindows || Random.Range(0, 1f) < windowProbability)
+            {
+                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                w2.transform.localPosition =
+                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + position.x, unit / 2 + y * unit,
+                        (unit / 2 * dimensions.z) + position.z + tinyWindowOffset);
+                w2.transform.eulerAngles = new Vector3(0, -90, 0);
+                SetWindowColor(w2, windowFrame, innerColor);
+            }
+        }
+
+        for (int z = 0; z < dimensions.z; z++)
+        {
+            if (addAllWindows || Random.Range(0, 1f) < windowProbability)
+            {
+                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                w1.transform.localPosition =
+                    new Vector3(((unit / 2 * dimensions.x) - (unit * dimensions.x)) + position.x - tinyWindowOffset,
+                        unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + position.z);
+                w1.transform.eulerAngles = new Vector3(0, 180, 0);
+                SetWindowColor(w1, windowFrame, innerColor);
+            }
+
+            if (addAllWindows || Random.Range(0, 1f) < windowProbability)
+            {
+                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                w2.transform.localPosition = new Vector3((unit / 2 * dimensions.x) + position.x + tinyWindowOffset,
+                    unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + position.z);
+                w2.transform.eulerAngles = new Vector3(0, 0, 0);
+                SetWindowColor(w2, windowFrame, innerColor);
+            }
+        }
+    }
+
+    private void SetColor(GameObject obj, Color color)
+    {
+        obj.GetComponent<MeshRenderer>().material.color = color;
+    }
+
+    private void SetWindowColor(GameObject obj, Color color, Color innerColor)
+    {
+        obj.GetComponent<MeshRenderer>().material.color = color;
+    }
+    
+    #endregion
 }

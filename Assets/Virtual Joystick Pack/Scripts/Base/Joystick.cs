@@ -42,11 +42,11 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     {
         if (isRight)
         {
-            Joystick.rightJoystick = this;
+            rightJoystick = this;
         }
         else
         {
-            Joystick.leftJoystick = this;
+            leftJoystick = this;
         }
     }
 

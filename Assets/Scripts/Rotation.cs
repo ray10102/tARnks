@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotation : MonoBehaviour { 
-    private Joystick joystick = Joystick.rightJoystick;
+public class Rotation : MonoBehaviour {
+    private Joystick joystick;
     private float deadzone = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //need to check that it's not shooting and that the joystick is in the right position
-        if (joystick.Horizontal >= Mathf.Abs(deadzone))
+        joystick = Joystick.rightJoystick;
+        // need to check that it's not shooting
+        if (Mathf.Abs(Joystick.rightJoystick.Horizontal) >= deadzone)
         {
-            transform.Rotate(Vector3.right * Time.deltaTime);
+            transform.Rotate((Vector3.up * Time.deltaTime) * (Joystick.rightJoystick.Horizontal * 50));
         }
     }
 }
