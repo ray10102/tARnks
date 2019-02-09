@@ -1,35 +1,51 @@
 fileFormatVersion: 2
-guid: ef8f2e551df18c4448e197259f4d817e
+guid: bf67dfef9f51c8d4a88d2598961d632d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: body
-    100002: head
-    100004: //RootNode
-    400000: body
-    400002: head
-    400004: //RootNode
-    2100000: Diken
-    2100002: "Palet Kapa\u011F\u0131"
-    2100004: Material.003
-    2100006: Material.002
-    2100008: UstGovde
-    2100010: "Y\u0131ld\u0131z"
-    2100012: "Far D\u0131\u015F"
-    2100014: "\u0130\xE7 palet"
-    2100016: Palet
-    2300000: body
-    2300002: head
-    3300000: body
-    3300002: head
-    4300000: head
-    4300002: body
-    7400000: Take 001
+    100000: building1
+    100002: building2
+    100004: building3
+    100006: //RootNode
+    100008: top1
+    100010: window
+    100012: windowInterior
+    400000: building1
+    400002: building2
+    400004: building3
+    400006: //RootNode
+    400008: top1
+    400010: window
+    400012: windowInterior
+    2100000: lambert1
+    2300000: building1
+    2300002: building2
+    2300004: building3
+    2300006: top1
+    2300008: window
+    2300010: windowInterior
+    3300000: building1
+    3300002: building2
+    3300004: building3
+    3300006: top1
+    3300008: window
+    3300010: windowInterior
+    4300000: building2
+    4300002: building3
+    4300004: window
+    4300006: windowInterior
+    4300008: top1
+    4300010: building1
+    6400000: building1
+    6400002: building2
+    6400004: building3
+    6400006: top1
+    6400008: window
+    6400010: windowInterior
     9500000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -55,17 +71,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -89,7 +105,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -104,10 +120,10 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
