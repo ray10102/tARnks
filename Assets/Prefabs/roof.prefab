@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2031681533341425407}
   - component: {fileID: 2031681533342391359}
   - component: {fileID: 2031681533346753631}
+  - component: {fileID: 657381135381942445}
   m_Layer: 0
   m_Name: roof
   m_TagString: Untagged
@@ -92,3 +93,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300008, guid: bf67dfef9f51c8d4a88d2598961d632d, type: 3}
+--- !u!114 &657381135381942445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031681533344645873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb660124f9dbf744bd9c050637a2817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
