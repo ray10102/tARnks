@@ -16,6 +16,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     [Header("Components")]
     public RectTransform background;
     public RectTransform handle;
+    public bool pressed;
 
     public float Horizontal { get { return inputVector.x; } }
     public float Vertical { get { return inputVector.y; } }
@@ -23,17 +24,20 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     public virtual void OnDrag(PointerEventData eventData)
     {
-
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+    }
 
+    public void OnMouseDown()
+    {
+        pressed = true;
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-
+        pressed = false;
     }
 
     protected void ClampJoystick()

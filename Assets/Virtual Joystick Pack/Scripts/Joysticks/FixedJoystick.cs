@@ -21,11 +21,13 @@ public class FixedJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
+        pressed = true;
         OnDrag(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
+        pressed = false;
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
     }
