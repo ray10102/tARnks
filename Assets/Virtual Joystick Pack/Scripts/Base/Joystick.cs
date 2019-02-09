@@ -6,6 +6,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     [Header("Options")]
     [Range(0f, 2f)] public float handleLimit = 1f;
     public JoystickMode joystickMode = JoystickMode.AllAxis;
+    public bool isRight = false;
+
+    public static Joystick leftJoystick;
+    public static Joystick rightJoystick;
 
     protected Vector2 inputVector = Vector2.zero;
 
