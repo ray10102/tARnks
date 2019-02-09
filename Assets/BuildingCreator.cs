@@ -53,7 +53,7 @@ public class BuildingCreator : MonoBehaviour
                     for (int z = 0; z < dimensions.z; z++)
                     {
                         GameObject w = Instantiate(window[Random.Range(0, window.Length)], obj.transform) as GameObject;
-                        w.transform.localPosition = new Vector3( 1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, );
+                        w.transform.localPosition = new Vector3( 1.5f * (dimensions.x - 1) - 3 * x, 1.5f + y * 3f, 0);
                     }
                 }
             }
