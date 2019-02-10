@@ -8,6 +8,8 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private int mapWidth, mapLength, minStreetWidth, maxStreetWidth, minBuildingWidth, maxBuildingWidth;
 
+    [SerializeField] private bool makeMapOnStart;
+    
     private int[] lengths;
 
     private int[] widths;
@@ -16,15 +18,25 @@ public class MapGenerator : MonoBehaviour
     public int totalLength;
     [HideInInspector]
     public int totalWidth;
+
+    private bool madeMap;
     
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("START");
+        if (makeMapOnStart)
+        {
+            MakeMap();
+        }
     }
 
     public void MakeMap()
     {
+        if (madeMap)
+        {
+            return;
+        }
         widths = new int[mapWidth];
         lengths = new int[mapLength];
         
@@ -70,5 +82,6 @@ public class MapGenerator : MonoBehaviour
         }
         
         totalLength = l;
+        madeMap = true;
     }
 }

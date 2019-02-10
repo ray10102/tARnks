@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638caa7a4e7659a48866fb5ab7535e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 20
-  mapLength: 20
-  minStreetWidth: 3
-  maxStreetWidth: 7
-  minBuildingWidth: 4
-  maxBuildingWidth: 12
+  mapWidth: 10
+  mapLength: 10
+  minStreetWidth: 2
+  maxStreetWidth: 4
+  minBuildingWidth: 3
+  maxBuildingWidth: 8
   totalLength: 0
   totalWidth: 0
 --- !u!114 &1131823757508939570

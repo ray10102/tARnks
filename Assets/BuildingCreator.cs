@@ -29,7 +29,7 @@ public class BuildingCreator : MonoBehaviour
     private static int minRoofHeight = 3;
     private static float tinyWindowOffset = .0001f;
 
-    private static float unit = 1f;
+    private static float unit = .125f;
 
     void Awake()
     {
@@ -67,7 +67,7 @@ public class BuildingCreator : MonoBehaviour
     {
         int buildingIndex = Random.Range(0, buildings.Length);
         GameObject obj = Instantiate(buildings[buildingIndex], buildingParent) as GameObject;
-        obj.transform.localPosition = position;
+        obj.transform.localPosition = position * unit;
         obj.transform.localScale = dimensions;
         SetColor(obj, buildingColor);
         return buildingIndex;
@@ -78,7 +78,7 @@ public class BuildingCreator : MonoBehaviour
         if (dimensions.y > roofHeightThreshhold && buildingIndex == 2 && Random.Range(0f, 1f) < roofProbability)
         {
             GameObject roof = Instantiate(roofs[Random.Range(0, roofs.Length)], buildingParent);
-            roof.transform.localPosition = new Vector3(position.x, dimensions.y * unit, position.z);
+            roof.transform.localPosition = new Vector3(position.x, dimensions.y, position.z) * unit;
             dimensions.y = Mathf.Min(dimensions.x, dimensions.z);
             roof.transform.localScale = dimensions;
             SetColor(roof, buildingColor);
@@ -106,20 +106,20 @@ public class BuildingCreator : MonoBehaviour
         {
             if (addAllWindows || Random.Range(0, 1f) < windowProbability)
             {
-                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)], buildingParent) as GameObject;
                 w1.transform.localPosition =
-                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + position.x, unit / 2 + y * unit,
-                        (unit / 2 * dimensions.z) - (unit * dimensions.z) + position.z - tinyWindowOffset);
+                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + (position.x * unit), unit / 2 + y * unit,
+                        (unit / 2 * dimensions.z) - (unit * dimensions.z) + (position.z * unit) - tinyWindowOffset);
                 w1.transform.eulerAngles = new Vector3(0, 90, 0);
                 SetWindowColor(w1, windowFrame, innerColor);
             }
 
             if (addAllWindows || Random.Range(0, 1f) < windowProbability)
             {
-                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)], buildingParent) as GameObject;
                 w2.transform.localPosition =
-                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + position.x, unit / 2 + y * unit,
-                        (unit / 2 * dimensions.z) + position.z + tinyWindowOffset);
+                    new Vector3((unit / 2 * (dimensions.x - 1) - unit * x) + (position.x * unit), unit / 2 + y * unit,
+                        (unit / 2 * dimensions.z) + (position.z * unit) + tinyWindowOffset);
                 w2.transform.eulerAngles = new Vector3(0, -90, 0);
                 SetWindowColor(w2, windowFrame, innerColor);
             }
@@ -129,19 +129,19 @@ public class BuildingCreator : MonoBehaviour
         {
             if (addAllWindows || Random.Range(0, 1f) < windowProbability)
             {
-                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
+                GameObject w1 = Instantiate(window[Random.Range(0, window.Length)], buildingParent) as GameObject;
                 w1.transform.localPosition =
-                    new Vector3(((unit / 2 * dimensions.x) - (unit * dimensions.x)) + position.x - tinyWindowOffset,
-                        unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + position.z);
+                    new Vector3(((unit / 2 * dimensions.x) - (unit * dimensions.x)) + (position.x * unit) - tinyWindowOffset,
+                        unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + (position.z * unit));
                 w1.transform.eulerAngles = new Vector3(0, 180, 0);
                 SetWindowColor(w1, windowFrame, innerColor);
             }
 
             if (addAllWindows || Random.Range(0, 1f) < windowProbability)
             {
-                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)]) as GameObject;
-                w2.transform.localPosition = new Vector3((unit / 2 * dimensions.x) + position.x + tinyWindowOffset,
-                    unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + position.z);
+                GameObject w2 = Instantiate(window[Random.Range(0, window.Length)], buildingParent) as GameObject;
+                w2.transform.localPosition = new Vector3((unit / 2 * dimensions.x) + (position.x * unit) + tinyWindowOffset,
+                    unit / 2 + y * unit, (unit / 2 * (dimensions.z - 1) - unit * z) + (position.z * unit));
                 w2.transform.eulerAngles = new Vector3(0, 0, 0);
                 SetWindowColor(w2, windowFrame, innerColor);
             }

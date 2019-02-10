@@ -19,7 +19,8 @@ namespace Complete
         private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
         private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
         private Joystick joystick;
-
+        private CharacterController controller;
+        
         private void Awake ()
         {
             //m_Rigidbody = GetComponent<Rigidbody> ();
@@ -60,9 +61,12 @@ namespace Complete
             // The axes names are based on player number.
             //m_MovementAxisName = "Vertical" + m_PlayerNumber;
             //m_TurnAxisName = "Horizontal" + m_PlayerNumber;
-            joystick = FindObjectOfType<Joystick>();
+            //joystick = FindObjectOfType<Joystick>();
+            joystick = Joystick.leftJoystick;
             // Store the original pitch of the audio source.
             m_OriginalPitch = m_MovementAudio.pitch;
+            controller = GetComponent<CharacterController>();
+
         }
 
 
@@ -73,7 +77,7 @@ namespace Complete
             if (moveVector != Vector3.zero)
             {
                 transform.rotation = Quaternion.LookRotation(moveVector);
-                transform.Translate(moveVector * m_Speed * Time.deltaTime, Space.World);
+                controller.Move(moveVector * m_Speed * Time.deltaTime);
             }
 
             //EngineAudio ();
