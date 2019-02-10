@@ -6,7 +6,8 @@ public class TankShooting : MonoBehaviour
     public int m_PlayerNumber = 1;              // Used to identify the different players.
     public Rigidbody m_Shell;                   // Prefab of the shell.
     public Transform m_FireTransform;           // A child of the tank where the shells are spawned.
-    public Slider m_AimSlider;                  // A child of the tank that displays the current launch force.
+    public GameObject aimArrow;
+    public float aimArrowScalar = 0.3f;
     public AudioSource m_ShootingAudio;         // Reference to the audio source used to play the shooting audio. NB: different to the movement audio source.
     public AudioClip m_ChargingClip;            // Audio that plays when each shot is charging up.
     public AudioClip m_FireClip;                // Audio that plays when each shot is fired.
@@ -31,7 +32,7 @@ public class TankShooting : MonoBehaviour
     {
         // When the tank is turned on, reset the launch force and the UI
         m_CurrentLaunchForce = m_MinLaunchForce;
-        m_AimSlider.value = m_MinLaunchForce;
+        aimArrow.transform.localScale = new Vector3(1, 1, m_MinLaunchForce * aimArrowScalar);
     }
 
 
@@ -41,15 +42,13 @@ public class TankShooting : MonoBehaviour
         m_FireButton = "Fire" + m_PlayerNumber;
         // The rate that the launch force charges up is the range of possible forces by the max charge time.
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
-
         joystick = Joystick.rightJoystick;
     }
-
 
     private void Update ()
     {
         // The slider should have a default value of the minimum launch force.
-        m_AimSlider.value = m_MinLaunchForce;
+        aimArrow.transform.localScale = new Vector3(1, 1, m_MinLaunchForce * aimArrowScalar);
 
         if (m_Fired)
         {
@@ -58,6 +57,7 @@ public class TankShooting : MonoBehaviour
             {
                 // ... reset the fired flag and reset the launch force.
                 m_Fired = false;
+                isCharging = false;
             }
         }
         
@@ -79,31 +79,33 @@ public class TankShooting : MonoBehaviour
         else if (!isCharging && IsCharging())
         {
             shoot_delay_timer += Time.deltaTime;
-
             if (shoot_delay_timer >= shoot_delay && !m_Fired)
             {
+                isCharging = true;
+                Debug.Log("step 1");
                 // Change the clip to the charging clip and start it playing.
                 m_ShootingAudio.clip = m_ChargingClip;
                 m_ShootingAudio.Play();
-                isCharging = true;
             }
         }
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
         else if (isCharging && IsCharging())
         {
+            Debug.Log("step 2");
             // Increment the launch force and update the slider.
             m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
-
-            m_AimSlider.value = m_CurrentLaunchForce;
+            aimArrow.transform.localScale = new Vector3(1, 1, m_CurrentLaunchForce * aimArrowScalar);
         }
         // Otherwise, if the fire button is released and the shell hasn't been launched yet...
         else if (isCharging && !IsCharging())
         {
+            Debug.Log("step 3");
             // ... launch the shell.
             Fire();
         }
         else if (shoot_delay_timer == 0.0f && !IsCharging())
         {
+            Debug.Log("step 4");
             shoot_delay_timer = 0.0f;
         }
     }
@@ -115,12 +117,13 @@ public class TankShooting : MonoBehaviour
 
     private void Fire ()
     {
+        Debug.Log("fire");
         // Set the fired flag so only Fire is only called once.
         m_Fired = true;
         isCharging = false;
-        shoot_cooldown_timer = 0;
-        shoot_delay_timer = 0;
-        hold_max_power_timer = 0;
+        shoot_cooldown_timer = 0f;
+        shoot_delay_timer = 0f;
+        hold_max_power_timer = 0f;
 
         // Create an instance of the shell and store a reference to it's rigidbody.
         Rigidbody shellInstance =

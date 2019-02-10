@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotation : MonoBehaviour {
     private Joystick joystick;
     private float deadzone = 0.2f;
+    [SerializeField] float rotateSpeed = 160f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Rotation : MonoBehaviour {
         // need to check that it's not shooting
         if (Mathf.Abs(joystick.Horizontal) >= deadzone)
         {
-            transform.Rotate((Vector3.up * Time.deltaTime) * (joystick.Horizontal * -60));
+            transform.Rotate((Vector3.up * Time.deltaTime) * (joystick.Horizontal * rotateSpeed));
         }
     }
 }
