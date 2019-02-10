@@ -9524,7 +9524,8 @@ MonoBehaviour:
   m_TankMask:
     serializedVersion: 2
     m_Bits: 0
-  m_ExplosionParticles: {fileID: 5521006402597802644}
+  m_ExplosionParticles: {fileID: 19807510, guid: 1911d89758d97cc4898d240e9e2545f4,
+    type: 3}
   m_ExplosionAudio: {fileID: 712464090094323918}
   m_MaxDamage: 100
   m_ExplosionForce: 1000
