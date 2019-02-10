@@ -19,6 +19,8 @@ public class TankMovement : MonoBehaviour
     private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
     private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
     private Joystick joystick;
+    private CharacterController controller;
+    private Camera camera;
 
     private void Awake ()
     {
@@ -59,31 +61,34 @@ public class TankMovement : MonoBehaviour
     }
 
 
-    private void Start ()
+    private void Start()
     {
         // The axes names are based on player number.
         //m_MovementAxisName = "Vertical" + m_PlayerNumber;
         //m_TurnAxisName = "Horizontal" + m_PlayerNumber;
-        foreach (Joystick j in FindObjectsOfType<Joystick>())
-        {
-            if (!j.isRight)
-            {
-                joystick = j;
-            }
-        }
+        //joystick = FindObjectOfType<Joystick>();
+        joystick = Joystick.leftJoystick;
         // Store the original pitch of the audio source.
         m_OriginalPitch = m_MovementAudio.pitch;
+        controller = GetComponent<CharacterController>();
+        camera = Camera.main;
     }
 
 
-    private void Update ()
+    private void Update()
     {
         Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);
 
         if (moveVector != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(moveVector);
-            transform.Translate(moveVector * m_Speed * Time.deltaTime, Space.World);
+
+            Vector3 relativeMovement = Camera.main.transform.TransformVector(moveVector);
+            relativeMovement.y = 0.0f;
+
+            //this is the direction in the world space we want to move:
+
+            transform.rotation = Quaternion.LookRotation(relativeMovement);
+            controller.Move(relativeMovement * m_Speed * Time.deltaTime);
         }
 
         EngineAudio ();

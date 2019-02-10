@@ -26,7 +26,11 @@ public class TankManager
     public void Setup ()
     {
         // Get references to the components.
+        Debug.Log("Got tank");
+        Debug.Log(m_Instance.name);
+
         m_Movement = m_Instance.GetComponent<TankMovement> ();
+        Debug.Log("Move" + m_Movement);
         m_Shooting = m_Instance.GetComponent<TankShooting> ();
         m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas> ().gameObject;
 
