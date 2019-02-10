@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public int m_NumRoundsToWin = 5;            // The number of rounds a single player has to win to win the game.
     public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
     public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
-    public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
-    public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
     public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
     public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
@@ -28,7 +26,6 @@ public class GameManager : MonoBehaviour
         m_EndWait = new WaitForSeconds (m_EndDelay);
 
         SpawnAllTanks();
-        SetCameraTargets();
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
         StartCoroutine (GameLoop ());
@@ -46,23 +43,6 @@ public class GameManager : MonoBehaviour
             m_Tanks[i].m_PlayerNumber = i + 1;
             m_Tanks[i].Setup();
         }
-    }
-
-
-    private void SetCameraTargets()
-    {
-        // Create a collection of transforms the same size as the number of tanks.
-        Transform[] targets = new Transform[m_Tanks.Length];
-
-        // For each of these transforms...
-        for (int i = 0; i < targets.Length; i++)
-        {
-            // ... set it to the appropriate tank transform.
-            targets[i] = m_Tanks[i].m_Instance.transform;
-        }
-
-        // These are the targets the camera should follow.
-        m_CameraControl.m_Targets = targets;
     }
 
 
@@ -99,12 +79,8 @@ public class GameManager : MonoBehaviour
         ResetAllTanks ();
         DisableTankControl ();
 
-        // Snap the camera's zoom and position to something appropriate for the reset tanks.
-        m_CameraControl.SetStartPositionAndSize ();
-
         // Increment the round number and display text showing the players what round it is.
         m_RoundNumber++;
-        m_MessageText.text = "ROUND " + m_RoundNumber;
 
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return m_StartWait;
@@ -115,9 +91,6 @@ public class GameManager : MonoBehaviour
     {
         // As soon as the round begins playing let the players control the tanks.
         EnableTankControl ();
-
-        // Clear the text from the screen.
-        m_MessageText.text = string.Empty;
 
         // While there is not one tank left...
         while (!OneTankLeft())
@@ -145,10 +118,6 @@ public class GameManager : MonoBehaviour
 
         // Now the winner's score has been incremented, see if someone has one the game.
         m_GameWinner = GetGameWinner ();
-
-        // Get a message based on the scores and whether or not there is a game winner and display it.
-        string message = EndMessage ();
-        m_MessageText.text = message;
 
         // Wait for the specified length of time until yielding control back to the game loop.
         yield return m_EndWait;
@@ -204,33 +173,6 @@ public class GameManager : MonoBehaviour
 
         // If no tanks have enough rounds to win, return null.
         return null;
-    }
-
-
-    // Returns a string message to display at the end of each round.
-    private string EndMessage()
-    {
-        // By default when a round ends there are no winners so the default end message is a draw.
-        string message = "DRAW!";
-
-        // If there is a winner then change the message to reflect that.
-        if (m_RoundWinner != null)
-            message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
-
-        // Add some line breaks after the initial message.
-        message += "\n\n\n\n";
-
-        // Go through all the tanks and add each of their scores to the message.
-        for (int i = 0; i < m_Tanks.Length; i++)
-        {
-            message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
-        }
-
-        // If there is a game winner, change the entire message to reflect that.
-        if (m_GameWinner != null)
-            message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
-
-        return message;
     }
 
 
