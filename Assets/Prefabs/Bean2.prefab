@@ -9487,7 +9487,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8647572869435676085}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.6187454
   m_Height: 4.8328347
@@ -9523,12 +9523,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TankMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExplosionParticles: {fileID: 19807510, guid: 1911d89758d97cc4898d240e9e2545f4,
     type: 3}
   m_ExplosionAudio: {fileID: 712464090094323918}
   m_MaxDamage: 100
-  m_ExplosionForce: 1000
+  m_ExplosionForce: 0
   m_MaxLifeTime: 2
   m_ExplosionRadius: 5
 --- !u!82 &712464090094323918

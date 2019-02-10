@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour
         }
 
 
-        buildingCreator = FindObjectOfType<BuildingCreator>();
+        buildingCreator = GetComponent<BuildingCreator>();
     }
 
     public void MakeMap()
@@ -105,6 +105,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         Spawn2.transform.localPosition =
                             new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
+                        Debug.Log("Adding Spawn Point");
                     }
                 }
                 totalWidth = w;
@@ -112,10 +113,13 @@ public class MapGenerator : MonoBehaviour
         }
         totalLength = l;
         madeMap = true;
-
         GameManager gm = FindObjectOfType<GameManager>();
         gm.SpawnAllTanks();
-
+        
+        if (!buildingCreator)
+        {
+            buildingCreator = GetComponent<BuildingCreator>();
+        }
         buildingCreator.transform.localPosition = buildingCreator.buildingParent.transform.localPosition - new Vector3(
                                                       (totalWidth * BuildingCreator.unit) / 2, 0,
                                                       (totalLength * BuildingCreator.unit) / 2);
