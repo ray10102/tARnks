@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tarnk2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4494043382458718600, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3769802868434200472, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -101,7 +106,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FillRect
       value: 
-      objectReference: {fileID: 2083802966108674257}
+      objectReference: {fileID: 0}
     - target: {fileID: 6177766427070209695, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_FillRect
@@ -110,11 +115,6 @@ PrefabInstance:
     - target: {fileID: 2600547681111826266, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4494043382458718600, guid: e32332faef8644b4881459e2ecc689b0,
-        type: 3}
-      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3769802868436100472, guid: e32332faef8644b4881459e2ecc689b0,
@@ -172,6 +172,26 @@ PrefabInstance:
       propertyPath: m_MovementAudio
       value: 
       objectReference: {fileID: 2418564724429787343}
+    - target: {fileID: 8716479107944341593, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716479107944341593, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421501456260699386, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421501456260699386, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e32332faef8644b4881459e2ecc689b0, type: 3}
 --- !u!82 &2418564724429787343 stripped
@@ -183,12 +203,6 @@ AudioSource:
 --- !u!4 &7247101893523447680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5055233007669157593, guid: e32332faef8644b4881459e2ecc689b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2500952878726087001}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &2083802966108674257 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4494043382458718600, guid: e32332faef8644b4881459e2ecc689b0,
     type: 3}
   m_PrefabInstance: {fileID: 2500952878726087001}
   m_PrefabAsset: {fileID: 0}
