@@ -20,6 +20,7 @@ namespace Complete
         private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
         private Joystick joystick;
         private CharacterController controller;
+        private Camera camera;
         
         private void Awake ()
         {
@@ -66,7 +67,7 @@ namespace Complete
             // Store the original pitch of the audio source.
             m_OriginalPitch = m_MovementAudio.pitch;
             controller = GetComponent<CharacterController>();
-
+            camera = Camera.main;
         }
 
 
@@ -76,8 +77,14 @@ namespace Complete
 
             if (moveVector != Vector3.zero)
             {
-                transform.rotation = Quaternion.LookRotation(moveVector);
-                controller.Move(moveVector * m_Speed * Time.deltaTime);
+
+                Vector3 relativeMovement = Camera.main.transform.TransformVector(moveVector);
+                relativeMovement.y = 0.0f;
+
+                //this is the direction in the world space we want to move:
+
+                transform.rotation = Quaternion.LookRotation(relativeMovement);
+                controller.Move(relativeMovement * m_Speed * Time.deltaTime);
             }
 
             //EngineAudio ();
