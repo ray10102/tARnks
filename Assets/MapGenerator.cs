@@ -9,6 +9,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int mapWidth, mapLength, minStreetWidth, maxStreetWidth, minBuildingWidth, maxBuildingWidth;
 
     [SerializeField] private bool makeMapOnStart;
+
+    private GameObject Spawn1;
+    private GameObject Spawn2;
+
     
     private int[] lengths;
 
@@ -39,7 +43,11 @@ public class MapGenerator : MonoBehaviour
         }
         widths = new int[mapWidth];
         lengths = new int[mapLength];
-        
+
+        Spawn1.transform.position = new Vector2(Mathf.Ceil(mapWidth / 2) - 2, Mathf.Ceil(mapLength / 2));
+        Spawn2.transform.position = new Vector2(Mathf.Ceil(mapWidth / 2) + 2, Mathf.Ceil(mapLength / 2));
+
+
         for (int x = 0; x < mapWidth; x++)
         {
             if (x % 2 == 0)
