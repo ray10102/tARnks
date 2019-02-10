@@ -36,15 +36,13 @@ public class TankShooting : MonoBehaviour
         m_FireButton = "Fire" + m_PlayerNumber;
         // The rate that the launch force charges up is the range of possible forces by the max charge time.
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
-
         joystick = Joystick.rightJoystick;
     }
-
 
     private void Update ()
     {
         // The slider should have a default value of the minimum launch force.
-        m_AimSlider.value = m_MinLaunchForce;
+        // m_AimSlider.value = m_MinLaunchForce;
         
         // If the max force has been exceeded and the shell hasn't yet been launched...
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
@@ -82,7 +80,6 @@ public class TankShooting : MonoBehaviour
     }
 
     private bool IsCharging() {
-        Debug.Log(joystick.pressed);
         return Mathf.Abs(joystick.Horizontal) < 0.2 && joystick.pressed;
     }
 
