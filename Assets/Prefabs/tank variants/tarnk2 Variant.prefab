@@ -81,7 +81,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AimSlider
       value: 
-      objectReference: {fileID: 5952503241415927526}
+      objectReference: {fileID: 0}
     - target: {fileID: 240875929220008286, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_ShootingAudio
@@ -97,17 +97,22 @@ PrefabInstance:
       propertyPath: m_FillImage
       value: 
       objectReference: {fileID: 8361285549726224460}
-    - target: {fileID: 8083575735618414527, guid: e32332faef8644b4881459e2ecc689b0,
+    - target: {fileID: 8895173910675532455, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_FillRect
       value: 
-      objectReference: {fileID: 4486444942237830515}
+      objectReference: {fileID: 2083802966108674257}
     - target: {fileID: 6177766427070209695, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_FillRect
       value: 
       objectReference: {fileID: 114011167270933787}
-    - target: {fileID: 2086897821920431146, guid: e32332faef8644b4881459e2ecc689b0,
+    - target: {fileID: 2600547681111826266, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494043382458718600, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -152,11 +157,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: adb03b5589dafe0488c56d65dec680eb, type: 2}
-    - target: {fileID: 2600547681111826266, guid: e32332faef8644b4881459e2ecc689b0,
+    - target: {fileID: 8083575735618414527, guid: e32332faef8644b4881459e2ecc689b0,
         type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_FillRect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086897821920431146, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5455497689813237743, guid: e32332faef8644b4881459e2ecc689b0,
+        type: 3}
+      propertyPath: m_MovementAudio
+      value: 
+      objectReference: {fileID: 2418564724429787343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e32332faef8644b4881459e2ecc689b0, type: 3}
 --- !u!82 &2418564724429787343 stripped
@@ -171,21 +186,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2500952878726087001}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5952503241415927526 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8083575735618414527, guid: e32332faef8644b4881459e2ecc689b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2500952878726087001}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &4486444942237830515 stripped
+--- !u!224 &2083802966108674257 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2086897821920431146, guid: e32332faef8644b4881459e2ecc689b0,
+  m_CorrespondingSourceObject: {fileID: 4494043382458718600, guid: e32332faef8644b4881459e2ecc689b0,
     type: 3}
   m_PrefabInstance: {fileID: 2500952878726087001}
   m_PrefabAsset: {fileID: 0}
