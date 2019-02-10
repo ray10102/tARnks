@@ -47,9 +47,6 @@ public class TankShooting : MonoBehaviour
     private void Update ()
     {
         // The slider should have a default value of the minimum launch force.
-<<<<<<< HEAD
-        // m_AimSlider.value = m_MinLaunchForce;
-=======
         m_AimSlider.value = m_MinLaunchForce;
 
         if (m_Fired)
@@ -61,7 +58,6 @@ public class TankShooting : MonoBehaviour
                 m_Fired = false;
             }
         }
->>>>>>> 15fed69d76570a53f0a84e131f97acc059300548
         
 
         // If the max force has been exceeded and the shell hasn't yet been launched...
