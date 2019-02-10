@@ -20,7 +20,12 @@ public class TankShooting : MonoBehaviour
     private bool m_Fired;                       // Whether or not the shell has been launched with this button press.
     private Joystick joystick;
     private bool isCharging;
-
+    private static float shoot_delay = 0.2f;
+    private static float shoot_delay_timer;
+    private static float hold_max_power = 2.5f;
+    private static float hold_max_power_timer;
+    private static float shoot_cooldown = 1.0f;
+    private static float shoot_cooldown_timer;
 
     private void OnEnable()
     {
@@ -42,26 +47,48 @@ public class TankShooting : MonoBehaviour
     private void Update ()
     {
         // The slider should have a default value of the minimum launch force.
+<<<<<<< HEAD
         // m_AimSlider.value = m_MinLaunchForce;
+=======
+        m_AimSlider.value = m_MinLaunchForce;
+
+        if (m_Fired)
+        {
+            shoot_cooldown_timer += Time.deltaTime;
+            if (shoot_cooldown_timer > shoot_cooldown)
+            {
+                // ... reset the fired flag and reset the launch force.
+                m_Fired = false;
+            }
+        }
+>>>>>>> 15fed69d76570a53f0a84e131f97acc059300548
         
+
         // If the max force has been exceeded and the shell hasn't yet been launched...
         if (m_CurrentLaunchForce >= m_MaxLaunchForce && !m_Fired)
         {
-            // ... use the max force and launch the shell.
-            m_CurrentLaunchForce = m_MaxLaunchForce;
-            Fire ();
+            hold_max_power_timer += Time.deltaTime;
+
+            if (hold_max_power_timer > hold_max_power)
+            {
+                // ... use the max force and launch the shell.
+                m_CurrentLaunchForce = m_MaxLaunchForce;
+                Fire();
+            }
+
         }
         // Otherwise, if the fire button has just started being pressed...
         else if (!isCharging && IsCharging())
         {
-            // ... reset the fired flag and reset the launch force.
-            m_Fired = false;
+            shoot_delay_timer += Time.deltaTime;
 
-            // Change the clip to the charging clip and start it playing.
-            m_ShootingAudio.clip = m_ChargingClip;
-            m_ShootingAudio.Play ();
-            isCharging = true;
-
+            if (shoot_delay_timer >= shoot_delay && !m_Fired)
+            {
+                // Change the clip to the charging clip and start it playing.
+                m_ShootingAudio.clip = m_ChargingClip;
+                m_ShootingAudio.Play();
+                isCharging = true;
+            }
         }
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
         else if (isCharging && IsCharging())
@@ -77,6 +104,10 @@ public class TankShooting : MonoBehaviour
             // ... launch the shell.
             Fire();
         }
+        else if (shoot_delay_timer == 0.0f && !IsCharging())
+        {
+            shoot_delay_timer = 0.0f;
+        }
     }
 
     private bool IsCharging() {
@@ -89,6 +120,9 @@ public class TankShooting : MonoBehaviour
         // Set the fired flag so only Fire is only called once.
         m_Fired = true;
         isCharging = false;
+        shoot_cooldown_timer = 0;
+        shoot_delay_timer = 0;
+        hold_max_power_timer = 0;
 
         // Create an instance of the shell and store a reference to it's rigidbody.
         Rigidbody shellInstance =
