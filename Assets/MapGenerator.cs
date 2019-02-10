@@ -50,9 +50,12 @@ public class MapGenerator : MonoBehaviour
         }
         widths = new int[mapWidth];
         lengths = new int[mapLength];
-        
-        Vector2 s1 = new Vector2(Mathf.Ceil(mapWidth / 2) - 2, Mathf.Ceil(mapLength / 2));
-        Vector2 s2 = new Vector2(Mathf.Ceil(mapWidth / 2) + 2, Mathf.Ceil(mapLength / 2));
+
+        Vector2 s1 = new Vector2(Mathf.Ceil(mapWidth / 2f) - 2, Mathf.Ceil(mapLength / 2f));
+        Vector2 s2 = new Vector2(Mathf.Ceil(mapWidth / 2f), Mathf.Ceil(mapLength / 2f));
+
+        Debug.Log("s1 is " + s1);
+        Debug.Log("s2 is " + s2);
         
         for (int x = 0; x < mapWidth; x++)
         {
@@ -87,19 +90,18 @@ public class MapGenerator : MonoBehaviour
             {
                 w += widths[j];
                 if (i % 2 == 0 && j % 2 == 0)
-                {   
+                {
                     BuildingCreator.MakeBuilding(new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)),
                         new Vector2(widths[j], lengths[i]));
                 }
                 else
                 {
-                    if (s1.x == j && s1.y == i)
+                    if ((int)s1.x == j & (int)s1.y == i)
                     {
                         Spawn1.transform.localPosition =
-                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;   
+                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
                     }
-
-                    if (s2.x == j && s2.y == i)
+                    if ((int)s2.x == j && (int)s2.y == i)
                     {
                         Spawn2.transform.localPosition =
                             new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
@@ -110,6 +112,9 @@ public class MapGenerator : MonoBehaviour
         }
         totalLength = l;
         madeMap = true;
+
+        GameManager gm = FindObjectOfType<GameManager>();
+        gm.SpawnAllTanks();
 
         buildingCreator.transform.localPosition = buildingCreator.buildingParent.transform.localPosition - new Vector3(
                                                       (totalWidth * BuildingCreator.unit) / 2, 0,

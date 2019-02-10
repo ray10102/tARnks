@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
     public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
-        
+
     private int m_RoundNumber;                  // Which round the game is currently on.
     private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
     private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
@@ -25,15 +25,14 @@ public class GameManager : MonoBehaviour
         m_StartWait = new WaitForSeconds (m_StartDelay);
         m_EndWait = new WaitForSeconds (m_EndDelay);
 
-        SpawnAllTanks();
-
         // Once the tanks have been created and the camera is using them as targets, start the game.
         StartCoroutine (GameLoop ());
     }
 
 
-    private void SpawnAllTanks()
+    public void SpawnAllTanks()
     {
+
         // For all the tanks...
         for (int i = 0; i < m_Tanks.Length; i++)
         {
@@ -44,7 +43,6 @@ public class GameManager : MonoBehaviour
             m_Tanks[i].Setup();
         }
     }
-
 
     // This is called from start and will run each phase of the game one after another.
     private IEnumerator GameLoop ()
