@@ -21,7 +21,10 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         Debug.Log("START");
+    }
 
+    public void MakeMap()
+    {
         widths = new int[mapWidth];
         lengths = new int[mapLength];
         

@@ -55,7 +55,7 @@ public static class OpenSourceInitializer
     static void ReplaceModelRecoEventPlaceHolder(DefaultModelRecoEventHandlerPlaceHolder placeHolder)
     {
         var go = placeHolder.gameObject;
-        go.AddComponent<DefaultModelRecoEventHandler>();
+        // go.AddComponent<DefaultModelRecoEventHandler>();
 
         Object.DestroyImmediate(placeHolder);
     }
@@ -72,11 +72,11 @@ public static class OpenSourceInitializer
             go.AddComponent<DefaultInitializationErrorHandler>();
         }
 
-        public void AddDefaultModelRecoEventHandler(GameObject modelReco, ModelTargetBehaviour modelTargetTemplate)
+        /*public void AddDefaultModelRecoEventHandler(GameObject modelReco, ModelTargetBehaviour modelTargetTemplate)
         {
             var mreh = modelReco.AddComponent<DefaultModelRecoEventHandler>();
             mreh.ShowBoundingBox = true;
             mreh.ModelTargetTemplate = modelTargetTemplate;
-        }
+        }*/
     }
 }

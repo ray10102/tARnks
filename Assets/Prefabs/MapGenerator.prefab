@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5543512978837139588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3569254194130156179}
+  - component: {fileID: 6519090791309534099}
+  - component: {fileID: 1131823757508939570}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3569254194130156179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543512978837139588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.470436, y: 32.855347, z: 19.719107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6519090791309534099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543512978837139588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638caa7a4e7659a48866fb5ab7535e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapWidth: 20
+  mapLength: 20
+  minStreetWidth: 3
+  maxStreetWidth: 7
+  minBuildingWidth: 4
+  maxBuildingWidth: 12
+  totalLength: 0
+  totalWidth: 0
+--- !u!114 &1131823757508939570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543512978837139588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96362da74d3d1994b9ab94349672836b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingParent: {fileID: 0}
+  buildings:
+  - {fileID: 4821261394500782185, guid: 7448ef7e554389d40805a58e2862f0e4, type: 3}
+  - {fileID: 5734704394130243257, guid: 97c23a383d8841342813734dc4ede3d6, type: 3}
+  - {fileID: 2940097514946131130, guid: e961dbba26c8cd14b8a8047a048168be, type: 3}
+  roofs:
+  - {fileID: 2031681533344645873, guid: 7b816d85c815f404a9a62dddc26d7cce, type: 3}
+  window:
+  - {fileID: 2791234095826967320, guid: c7a739c4f3c21504ca6b113f46a34883, type: 3}
+  roofHeightThreshhold: 6
+  roofProbability: 0.4
+  windowProbability: 0.5
+  addAllWindowsProbability: 0.2
+  frameColors:
+  - {r: 0.7924528, g: 0.76639473, b: 0.69900316, a: 1}
+  - {r: 0.4339623, g: 0.39493293, b: 0.3295657, a: 1}
+  innerColors:
+  - {r: 0.4745098, g: 0.926782, b: 1, a: 1}
+  - {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+  - {r: 0.9811321, g: 0.68804747, b: 0.30081883, a: 1}
+  buildingColors:
+  - {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  - {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  - {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+  - {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}

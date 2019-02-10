@@ -56,7 +56,7 @@ public class BuildingCreator : MonoBehaviour
         Color buildingColor = buildingColors[Random.Range(0, buildingColors.Length)];
         int buildingIndex = MakeBase(position, dimensions, buildingColor);
 
-        MakeRoof(dimensions, buildingIndex, buildingColor);
+        MakeRoof(position, dimensions, buildingIndex, buildingColor);
 
         MakeWindows(position, dimensions);
     }
@@ -66,20 +66,20 @@ public class BuildingCreator : MonoBehaviour
     private int MakeBase(Vector3 position, Vector3 dimensions, Color buildingColor)
     {
         int buildingIndex = Random.Range(0, buildings.Length);
-        GameObject obj = Instantiate(buildings[Random.Range(0, buildings.Length)], buildingParent) as GameObject;
+        GameObject obj = Instantiate(buildings[buildingIndex], buildingParent) as GameObject;
         obj.transform.localPosition = position;
         obj.transform.localScale = dimensions;
         SetColor(obj, buildingColor);
         return buildingIndex;
     }
 
-    private void MakeRoof(Vector3 dimensions, int buildingIndex, Color buildingColor)
+    private void MakeRoof(Vector3 position, Vector3 dimensions, int buildingIndex, Color buildingColor)
     {
         if (dimensions.y > roofHeightThreshhold && buildingIndex == 2 && Random.Range(0f, 1f) < roofProbability)
         {
             GameObject roof = Instantiate(roofs[Random.Range(0, roofs.Length)], buildingParent);
-            roof.transform.localPosition = new Vector3(0, dimensions.y * unit, 0);
-            dimensions.y = 3;
+            roof.transform.localPosition = new Vector3(position.x, dimensions.y * unit, position.z);
+            dimensions.y = Mathf.Min(dimensions.x, dimensions.z);
             roof.transform.localScale = dimensions;
             SetColor(roof, buildingColor);
         }
