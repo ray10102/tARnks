@@ -24,6 +24,7 @@ public class FloatingJoystick : Joystick
         background.position = eventData.position;
         handle.anchoredPosition = Vector2.zero;
         joystickCenter = eventData.position;
+        pressed = true;
     }
 
     public override void OnPointerUp(PointerEventData eventData)

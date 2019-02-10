@@ -16,9 +16,9 @@ public class Rotation : MonoBehaviour {
     {
         joystick = Joystick.rightJoystick;
         // need to check that it's not shooting
-        if (Mathf.Abs(Joystick.rightJoystick.Horizontal) >= deadzone)
+        if (Mathf.Abs(joystick.Horizontal) >= deadzone)
         {
-            transform.Rotate((Vector3.up * Time.deltaTime) * (Joystick.rightJoystick.Horizontal * -50));
+            transform.Rotate((Vector3.up * Time.deltaTime) * (joystick.Horizontal * -60));
         }
     }
 }
