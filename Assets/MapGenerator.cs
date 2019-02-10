@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour
         }
 
 
-        buildingCreator = FindObjectOfType<BuildingCreator>();
+        buildingCreator = GetComponent<BuildingCreator>();
     }
 
     public void MakeMap()
@@ -96,13 +96,15 @@ public class MapGenerator : MonoBehaviour
                     if (s1.x == j && s1.y == i)
                     {
                         Spawn1.transform.localPosition =
-                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;   
+                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
+                        Debug.Log("Adding Spawn Point");
                     }
 
                     if (s2.x == j && s2.y == i)
                     {
                         Spawn2.transform.localPosition =
                             new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
+                        Debug.Log("Adding Spawn Point");
                     }
                 }
                 totalWidth = w;
@@ -111,6 +113,11 @@ public class MapGenerator : MonoBehaviour
         totalLength = l;
         madeMap = true;
 
+        if (!buildingCreator)
+        {
+            buildingCreator = GetComponent<BuildingCreator>();
+        }
+        Debug.Log(buildingCreator);
         buildingCreator.transform.localPosition = buildingCreator.buildingParent.transform.localPosition - new Vector3(
                                                       (totalWidth * BuildingCreator.unit) / 2, 0,
                                                       (totalLength * BuildingCreator.unit) / 2);

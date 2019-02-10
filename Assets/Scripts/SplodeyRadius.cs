@@ -24,6 +24,7 @@ public class SplodeyRadius : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        splosion = GetComponent<MeshFilter>();
         if (splosion == null)
         {
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -34,6 +35,7 @@ public class SplodeyRadius : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log(col);
         if (col.GetComponent<Explodable>()) // All explodables have mesh filters
         {
             Explode(transform.position, .1f, col.GetComponent<MeshFilter>());

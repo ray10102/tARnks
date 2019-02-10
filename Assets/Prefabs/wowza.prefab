@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8869838298358550107}
   - component: {fileID: 3684307235435506362}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Splodey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,13 +443,13 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8ce5d020a687c314891341b4126d1de2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.358
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 197
+  Priority: 156
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -624,6 +624,12 @@ PrefabInstance:
       propertyPath: m_Tanks.Array.data[0].m_SpawnPoint
       value: 
       objectReference: {fileID: 2552166204844496500}
+    - target: {fileID: 5168918478145104328, guid: 9d41f4f655c19ae4ab820e18532a8a50,
+        type: 3}
+      propertyPath: m_TankPrefab
+      value: 
+      objectReference: {fileID: 8647572869435676085, guid: a4776e452d405c84f98c049b0a0aa34b,
+        type: 3}
     - target: {fileID: 5054059195742865754, guid: 9d41f4f655c19ae4ab820e18532a8a50,
         type: 3}
       propertyPath: background
