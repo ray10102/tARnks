@@ -32,11 +32,11 @@ public class SplodeyRadius : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.GetComponent<Explodable>()) // All explodables have mesh filters
+        if (col.GetComponent<Explodable>()) // All explodables have mesh filters
         {
-            
+            Explode(transform.position, .1f, col.GetComponent<MeshFilter>());
         }
     }
 

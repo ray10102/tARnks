@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 //Generate grid with the layout of where buildings and streets will be placed
 public class MapGenerator : MonoBehaviour
@@ -13,6 +16,9 @@ public class MapGenerator : MonoBehaviour
     private int[] lengths;
 
     private int[] widths;
+    
+    [SerializeField] private GameObject Spawn1;
+    [SerializeField] private GameObject Spawn2;
 
     [HideInInspector]
     public int totalLength;
@@ -20,6 +26,8 @@ public class MapGenerator : MonoBehaviour
     public int totalWidth;
 
     private bool madeMap;
+
+    private BuildingCreator buildingCreator;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +37,9 @@ public class MapGenerator : MonoBehaviour
         {
             MakeMap();
         }
+
+
+        buildingCreator = FindObjectOfType<BuildingCreator>();
     }
 
     public void MakeMap()
@@ -39,6 +50,9 @@ public class MapGenerator : MonoBehaviour
         }
         widths = new int[mapWidth];
         lengths = new int[mapLength];
+        
+        Vector2 s1 = new Vector2(Mathf.Ceil(mapWidth / 2) - 2, Mathf.Ceil(mapLength / 2));
+        Vector2 s2 = new Vector2(Mathf.Ceil(mapWidth / 2) + 2, Mathf.Ceil(mapLength / 2));
         
         for (int x = 0; x < mapWidth; x++)
         {
@@ -73,15 +87,32 @@ public class MapGenerator : MonoBehaviour
             {
                 w += widths[j];
                 if (i % 2 == 0 && j % 2 == 0)
-                {
+                {   
                     BuildingCreator.MakeBuilding(new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)),
                         new Vector2(widths[j], lengths[i]));
+                }
+                else
+                {
+                    if (s1.x == j && s1.y == i)
+                    {
+                        Spawn1.transform.localPosition =
+                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;   
+                    }
+
+                    if (s2.x == j && s2.y == i)
+                    {
+                        Spawn2.transform.localPosition =
+                            new Vector3(w - (widths[j] / 2f), 0, l - (lengths[i] / 2)) * BuildingCreator.unit;
+                    }
                 }
                 totalWidth = w;
             }
         }
-        
         totalLength = l;
         madeMap = true;
+
+        buildingCreator.transform.localPosition = buildingCreator.buildingParent.transform.localPosition - new Vector3(
+                                                      (totalWidth * BuildingCreator.unit) / 2, 0,
+                                                      (totalLength * BuildingCreator.unit) / 2);
     }
 }

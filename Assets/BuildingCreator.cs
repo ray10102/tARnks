@@ -7,7 +7,7 @@ public class BuildingCreator : MonoBehaviour
 {
     private static BuildingCreator instance;
 
-    [SerializeField] private Transform buildingParent;
+    public Transform buildingParent;
 
     [SerializeField] private GameObject[] buildings;
 
@@ -29,7 +29,7 @@ public class BuildingCreator : MonoBehaviour
     private static int minRoofHeight = 3;
     private static float tinyWindowOffset = .0001f;
 
-    private static float unit = .125f;
+    public static float unit = .125f;
 
     void Awake()
     {
