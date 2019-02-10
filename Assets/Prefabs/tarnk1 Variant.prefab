@@ -4594,7 +4594,7 @@ ParticleSystem:
 --- !u!199 &851004053887697166
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9750,7 +9750,7 @@ ParticleSystem:
 --- !u!199 &3334613187505709210
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10286,6 +10286,18 @@ PrefabInstance:
     - target: {fileID: 400014, guid: 112f8371a3fcc4d4cb10eb0dcff0e49c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 112f8371a3fcc4d4cb10eb0dcff0e49c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 112f8371a3fcc4d4cb10eb0dcff0e49c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 112f8371a3fcc4d4cb10eb0dcff0e49c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2300018, guid: 112f8371a3fcc4d4cb10eb0dcff0e49c, type: 3}
       propertyPath: m_Materials.Array.data[0]
