@@ -60,7 +60,8 @@ namespace Complete
             // The axes names are based on player number.
             //m_MovementAxisName = "Vertical" + m_PlayerNumber;
             //m_TurnAxisName = "Horizontal" + m_PlayerNumber;
-            joystick = FindObjectOfType<Joystick>();
+            //joystick = FindObjectOfType<Joystick>();
+            joystick = Joystick.leftJoystick;
             // Store the original pitch of the audio source.
             m_OriginalPitch = m_MovementAudio.pitch;
         }
