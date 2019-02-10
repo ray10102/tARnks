@@ -72,6 +72,11 @@ public static class OpenSourceInitializer
             go.AddComponent<DefaultInitializationErrorHandler>();
         }
 
+        public void AddDefaultModelRecoEventHandler(GameObject go, ModelTargetBehaviour modelTargetTemplate)
+        {
+            //throw new System.NotImplementedException();
+        }
+
         /*public void AddDefaultModelRecoEventHandler(GameObject modelReco, ModelTargetBehaviour modelTargetTemplate)
         {
             var mreh = modelReco.AddComponent<DefaultModelRecoEventHandler>();

@@ -29,7 +29,7 @@ public class BuildingCreator : MonoBehaviour
     private static int minRoofHeight = 3;
     private static float tinyWindowOffset = .0001f;
 
-    public static float unit = .125f;
+    public static float unit = 1f;
 
     void Awake()
     {

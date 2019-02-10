@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
     public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
-        
+
     private int m_RoundNumber;                  // Which round the game is currently on.
     private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
     private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
@@ -19,36 +19,38 @@ public class GameManager : MonoBehaviour
     private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 
 
-    private void Start()
+    public void StartGame()
     {
         // Create the delays so they only have to be made once.
         m_StartWait = new WaitForSeconds (m_StartDelay);
         m_EndWait = new WaitForSeconds (m_EndDelay);
-
-        SpawnAllTanks();
 
         // Once the tanks have been created and the camera is using them as targets, start the game.
         StartCoroutine (GameLoop ());
     }
 
 
-    private void SpawnAllTanks()
+    public void SpawnAllTanks()
     {
         // For all the tanks...
         for (int i = 0; i < m_Tanks.Length; i++)
         {
-            // ... create them, set their player number and references needed for control.
-            m_Tanks[i].m_Instance =
-                Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
-            m_Tanks[i].m_PlayerNumber = i + 1;
-            m_Tanks[i].Setup();
+            if (m_Tanks[i].m_Instance != null)
+            {
+                // ... create them, set their player number and references needed for control.
+                m_Tanks[i].m_Instance =
+                    Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
+                m_Tanks[i].m_PlayerNumber = i + 1;
+                m_Tanks[i].Setup();
+            }
         }
     }
-
 
     // This is called from start and will run each phase of the game one after another.
     private IEnumerator GameLoop ()
     {
+        SpawnAllTanks();
+
         // Start off by running the 'RoundStarting' coroutine but don't return until it's finished.
         yield return StartCoroutine (RoundStarting ());
 

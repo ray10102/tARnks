@@ -29,8 +29,9 @@ public class SplodeyRadius : MonoBehaviour
         {
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             splosion = sphere.GetComponent<MeshFilter>();
-            sphere.SetActive(false);
         }
+
+        splosion.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider col)

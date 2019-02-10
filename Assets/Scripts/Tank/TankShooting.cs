@@ -28,6 +28,8 @@ public class TankShooting : MonoBehaviour
     private static float shoot_cooldown = 1.0f;
     private static float shoot_cooldown_timer;
 
+
+
     private void OnEnable()
     {
         // When the tank is turned on, reset the launch force and the UI
@@ -82,7 +84,6 @@ public class TankShooting : MonoBehaviour
             if (shoot_delay_timer >= shoot_delay && !m_Fired)
             {
                 isCharging = true;
-                Debug.Log("step 1");
                 // Change the clip to the charging clip and start it playing.
                 m_ShootingAudio.clip = m_ChargingClip;
                 m_ShootingAudio.Play();
@@ -91,7 +92,6 @@ public class TankShooting : MonoBehaviour
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
         else if (isCharging && IsCharging())
         {
-            Debug.Log("step 2");
             // Increment the launch force and update the slider.
             m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
             aimArrow.transform.localScale = new Vector3(1, 1, m_CurrentLaunchForce * aimArrowScalar);
@@ -99,13 +99,11 @@ public class TankShooting : MonoBehaviour
         // Otherwise, if the fire button is released and the shell hasn't been launched yet...
         else if (isCharging && !IsCharging())
         {
-            Debug.Log("step 3");
             // ... launch the shell.
             Fire();
         }
         else if (shoot_delay_timer == 0.0f && !IsCharging())
         {
-            Debug.Log("step 4");
             shoot_delay_timer = 0.0f;
         }
     }
@@ -117,7 +115,6 @@ public class TankShooting : MonoBehaviour
 
     private void Fire ()
     {
-        Debug.Log("fire");
         // Set the fired flag so only Fire is only called once.
         m_Fired = true;
         isCharging = false;

@@ -28,7 +28,9 @@ public class MapGenerator : MonoBehaviour
     private bool madeMap;
 
     private BuildingCreator buildingCreator;
-    
+
+    [SerializeField] private bool disableMap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,10 +52,10 @@ public class MapGenerator : MonoBehaviour
         }
         widths = new int[mapWidth];
         lengths = new int[mapLength];
-        
-        Vector2 s1 = new Vector2(Mathf.Ceil(mapWidth / 2) - 2, Mathf.Ceil(mapLength / 2));
-        Vector2 s2 = new Vector2(Mathf.Ceil(mapWidth / 2) + 2, Mathf.Ceil(mapLength / 2));
-        
+
+        Vector2 s1 = new Vector2(Mathf.Ceil(mapWidth / 2f) - 2, Mathf.Ceil(mapLength / 2f));
+        Vector2 s2 = new Vector2(Mathf.Ceil(mapWidth / 2f), Mathf.Ceil(mapLength / 2f));
+
         for (int x = 0; x < mapWidth; x++)
         {
             if (x % 2 == 0)
@@ -121,5 +123,11 @@ public class MapGenerator : MonoBehaviour
         buildingCreator.transform.localPosition = buildingCreator.buildingParent.transform.localPosition - new Vector3(
                                                       (totalWidth * BuildingCreator.unit) / 2, 0,
                                                       (totalLength * BuildingCreator.unit) / 2);
+        buildingCreator.buildingParent.gameObject.SetActive(!disableMap);
+    }
+
+    public void TurnOnMap()
+    {
+        buildingCreator.buildingParent.gameObject.SetActive(true);
     }
 }
